@@ -8,16 +8,16 @@ var isSupported =
   prefetchElement.relList.supports("prefetch") &&
   window.IntersectionObserver &&
   "isIntersecting" in IntersectionObserverEntry.prototype;
-var allowQueryString = "instantAllowQueryString" in document.body.dataset;
-var allowExternalLinks = "instantAllowExternalLinks" in document.body.dataset;
-var useWhitelist = "instantWhitelist" in document.body.dataset;
+var allowQueryString = "rocketboostAllowQueryString" in document.body.dataset;
+var allowExternalLinks = "rocketboostAllowExternalLinks" in document.body.dataset;
+var useWhitelist = "rocketboostWhitelist" in document.body.dataset;
 
 var delayOnHover = 65;
 var useMousedown = false;
 var useMousedownOnly = false;
 var useViewport = false;
-if ("instantIntensity" in document.body.dataset) {
-  var intensity = document.body.dataset.instantIntensity;
+if ("rocketboostIntensity" in document.body.dataset) {
+  var intensity = document.body.dataset.rocketboostIntensity;
 
   if (intensity.substr(0, "mousedown".length) == "mousedown") {
     useMousedown = true;
@@ -180,14 +180,14 @@ function isPreloadable(linkElement) {
     return;
   }
 
-  if (useWhitelist && !("instant" in linkElement.dataset)) {
+  if (useWhitelist && !("rocketboost" in linkElement.dataset)) {
     return;
   }
 
   if (
     !allowExternalLinks &&
     linkElement.origin != location.origin &&
-    !("instant" in linkElement.dataset)
+    !("rocketboost" in linkElement.dataset)
   ) {
     return;
   }
@@ -203,7 +203,7 @@ function isPreloadable(linkElement) {
   if (
     !allowQueryString &&
     linkElement.search &&
-    !("instant" in linkElement.dataset)
+    !("rocketboost" in linkElement.dataset)
   ) {
     return;
   }
@@ -216,7 +216,7 @@ function isPreloadable(linkElement) {
     return;
   }
 
-  if ("noInstant" in linkElement.dataset) {
+  if ("norocketboost" in linkElement.dataset) {
     return;
   }
 
