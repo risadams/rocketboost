@@ -1,0 +1,20 @@
+{
+  "name": "rocketboost",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rocketboost.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/risadams/rocketboost.git"
+  },
+  "keywords": [
+    "preload",
+    "performance"
+  ],
+  "author": "Ris Adams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/risadams/rocketboost/issues"
+  },
+  "homepage": "https://builtforyou.com/"
+}
