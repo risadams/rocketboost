@@ -1,6 +1,11 @@
+"use strict";
+
+/*jslint node: true */
+/* global define, document, window, navigator, location, performance,IntersectionObserver,IntersectionObserverEntry,requestIdleCallback */
+
 var mouseoverTimer;
 var lastTouchTimestamp;
-var prefetches = new Set();
+var prefetches = [];
 var prefetchElement = document.createElement("link");
 var isSupported =
   prefetchElement.relList &&
@@ -9,19 +14,19 @@ var isSupported =
   window.IntersectionObserver &&
   "isIntersecting" in IntersectionObserverEntry.prototype;
 var allowQueryString = "rocketboostAllowQueryString" in document.body.dataset;
-var allowExternalLinks =
-  "rocketboostAllowExternalLinks" in document.body.dataset;
+var allowExternalLinks = "rocketboostAllowExternalLinks" in document.body.dataset;
 var useWhitelist = "rocketboostWhitelist" in document.body.dataset;
-
 var delayOnHover = 65;
 var useMousedown = false;
 var useMousedownOnly = false;
 var useViewport = false;
+
 if ("rocketboostIntensity" in document.body.dataset) {
   var intensity = document.body.dataset.rocketboostIntensity;
 
   if (intensity.substr(0, "mousedown".length) == "mousedown") {
     useMousedown = true;
+
     if (intensity == "mousedown-only") {
       useMousedownOnly = true;
     }
@@ -50,6 +55,7 @@ if ("rocketboostIntensity" in document.body.dataset) {
     }
   } else {
     var milliseconds = parseInt(intensity);
+
     if (!isNaN(milliseconds)) {
       delayOnHover = milliseconds;
     }
@@ -86,21 +92,22 @@ if (isSupported) {
 
   if (useViewport) {
     var triggeringFunction;
+
     if (window.requestIdleCallback) {
-      triggeringFunction = (callback) => {
+      triggeringFunction = function triggeringFunction(callback) {
         requestIdleCallback(callback, {
           timeout: 1500,
         });
       };
     } else {
-      triggeringFunction = (callback) => {
+      triggeringFunction = function triggeringFunction(callback) {
         callback();
       };
     }
 
-    triggeringFunction(() => {
-      var intersectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+    triggeringFunction(function () {
+      var intersectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             var linkElement = entry.target;
             intersectionObserver.unobserve(linkElement);
@@ -108,8 +115,7 @@ if (isSupported) {
           }
         });
       });
-
-      document.querySelectorAll("a").forEach((linkElement) => {
+      document.querySelectorAll("a").forEach(function (linkElement) {
         if (isPreloadable(linkElement)) {
           intersectionObserver.observe(linkElement);
         }
@@ -122,7 +128,6 @@ function touchstartListener(event) {
   /* Chrome on Android calls mouseover before touchcancel so `lastTouchTimestamp`
    * must be assigned on touchstart to be measured on mouseover. */
   lastTouchTimestamp = performance.now();
-
   var linkElement = event.target.closest("a");
 
   if (!isPreloadable(linkElement)) {
@@ -143,9 +148,10 @@ function mouseoverListener(event) {
     return;
   }
 
-  linkElement.addEventListener("mouseout", mouseoutListener, { passive: true });
-
-  mouseoverTimer = setTimeout(() => {
+  linkElement.addEventListener("mouseout", mouseoutListener, {
+    passive: true,
+  });
+  mouseoverTimer = setTimeout(function () {
     preload(linkElement.href);
     mouseoverTimer = undefined;
   }, delayOnHover);
@@ -232,6 +238,5 @@ function preload(url) {
   prefetcher.rel = "prefetch";
   prefetcher.href = url;
   document.head.appendChild(prefetcher);
-
   prefetches.add(url);
 }
