@@ -1,6 +1,6 @@
 {
   "name": "rocketboost",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "rocketboost.js",
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/risadams/rocketboost/issues"
   },
-  "homepage": "https://builtforyou.com/"
+  "homepage": "https://builtforyou.com/",
+  "devDependencies": {
+    "jshint": "^2.11.0"
+  }
 }

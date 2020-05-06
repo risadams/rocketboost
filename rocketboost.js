@@ -9,7 +9,8 @@ var isSupported =
   window.IntersectionObserver &&
   "isIntersecting" in IntersectionObserverEntry.prototype;
 var allowQueryString = "rocketboostAllowQueryString" in document.body.dataset;
-var allowExternalLinks = "rocketboostAllowExternalLinks" in document.body.dataset;
+var allowExternalLinks =
+  "rocketboostAllowExternalLinks" in document.body.dataset;
 var useWhitelist = "rocketboostWhitelist" in document.body.dataset;
 
 var delayOnHover = 65;
@@ -39,8 +40,7 @@ if ("rocketboostIntensity" in document.body.dataset) {
          * Note that the viewport (which we check here) is smaller than the resolution due to the UI’s chrome */
         if (
           document.documentElement.clientWidth *
-            document.documentElement.clientHeight <
-          450000
+            document.documentElement.clientHeight < 450000
         ) {
           useViewport = true;
         }
