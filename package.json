@@ -1,8 +1,8 @@
 {
   "name": "rocketboost",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
-  "main": "rocketboost.js",
+  "main": "build/rocketboost.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/risadams/rocketboost.git"
@@ -16,8 +16,14 @@
   "bugs": {
     "url": "https://github.com/risadams/rocketboost/issues"
   },
+  "scripts": {
+    "build": "babel src -d build"
+  },
   "homepage": "https://builtforyou.com/",
   "devDependencies": {
-    "jshint": "^2.11.0"
+    "@babel/core": "7.9.6",
+    "@babel/cli": "7.8.4",
+    "@babel/preset-env": "7.9.6",
+    "jshint": "^2.11.1"
   }
 }
