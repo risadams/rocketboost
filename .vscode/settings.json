@@ -11,13 +11,11 @@
         "panel.border": "#28283e",
         "sideBar.border": "#28283e",
         "statusBar.background": "#14141f",
-        "statusBar.border": "#14141f",
         "statusBar.foreground": "#e7e7e7",
         "statusBarItem.hoverBackground": "#28283e",
         "tab.activeBorder": "#28283e",
         "titleBar.activeBackground": "#14141f",
         "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.border": "#14141f",
         "titleBar.inactiveBackground": "#14141f99",
         "titleBar.inactiveForeground": "#e7e7e799"
     }
