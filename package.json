@@ -21,7 +21,7 @@
   },
   "homepage": "https://builtforyou.com/",
   "devDependencies": {
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.11.1",
     "@babel/cli": "7.8.4",
     "@babel/preset-env": "7.9.6",
     "jshint": "^2.11.1"
